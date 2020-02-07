@@ -15,7 +15,7 @@ export class OrderMainComponent implements OnInit {
   public statusFlag: boolean;
   public allItemsList: Array<any>;
   public allPreferenceList: Array<any>;
-  public loaderFlag: boolean = false;
+  public loaderFlag: boolean = true;
 
   constructor(private http: HttpService, private router: Router) {
     this.itemDataList = [];
@@ -68,7 +68,7 @@ export class OrderMainComponent implements OnInit {
 
   // Places the order
   public placeOrder(): void {
-    this.loaderFlag = true;
+    this.loaderFlag = false;
     const payload = {
       itemDetail: this.itemDataList,
       userId: localStorage.getItem('userid')
@@ -77,10 +77,10 @@ export class OrderMainComponent implements OnInit {
       this.confirmationMessage = 'Order placed successfully.';
       this.statusFlag = true;
       $('#successModal').modal('show');
-      this.loaderFlag = false;
+      this.loaderFlag = true;
     }, (exception) => {
-      this.statusFlag = false;
-      this.loaderFlag = false;
+      this.statusFlag = true;
+      this.loaderFlag = true;
       this.confirmationMessage = 'Something went wrong.';
       $('#successModal').modal('show');
     });
