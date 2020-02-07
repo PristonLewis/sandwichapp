@@ -1,12 +1,17 @@
 <div class="container-fluid mainContainer">
     <div class="row">
         <div class="col-sm-8">
-            <h2>Preferences</h2>
-
+            <ul class="list-group">
+                <li class="list-group-item active">My preferences</li>
+              </ul>
+              <br>
             <div  class= "card-columns">
                 <app-item-card *ngFor="let item of allPreferenceList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
             </div>    
-            <h3>Items</h3>
+            <ul class="list-group">
+                <li class="list-group-item active">Items</li>
+              </ul>
+              <br>
             <div class= "card-columns">
                 <app-item-card *ngFor="let item of allItemsList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
             </div>

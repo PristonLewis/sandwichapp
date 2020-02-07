@@ -66,7 +66,7 @@ export class OrderMainComponent implements OnInit {
   public placeOrder(): void {
     const payload = {
       items: this.itemDataList,
-      userId: localStorage.getItems('userid')
+      userId: localStorage.getItem('userid')
     };
     this.http.postRequest('orders/placeOrder', payload).subscribe((data: any) => {
       this.confirmationMessage = 'Order placed successfully.';

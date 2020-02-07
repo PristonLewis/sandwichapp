@@ -4,17 +4,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './detail-card.component.html',
   styleUrls: ['./detail-card.component.sass']
 })
-export class DetailCardComponent implements OnInit {
+export class DetailCardComponent{
 
   constructor() { }
   @Input() header: string;
   @Input() cartItems: Array<any>;
   @Output() removeCardEvent = new EventEmitter();
-  ngOnInit() {
-  }
 
+  // Triggers the removeItem event to the parent component
   public remove(index): void {
-    console.log('index', index);
     this.removeCardEvent.emit(index);
   }
 

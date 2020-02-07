@@ -13,7 +13,6 @@ export class ItemCardComponent {
 
   // triggers a addcart event to the parent component
   public addToCart(item: object): void {
-    console.log('there');
     this.selectedItemEvent.emit(item);
   }
 
