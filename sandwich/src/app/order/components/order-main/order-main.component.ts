@@ -37,13 +37,14 @@ export class OrderMainComponent implements OnInit {
 
     // Getting all the preferences
     public getAllPreferences(): void {
-      this.http.getRequest('items/allitems').subscribe((data) => {
+      this.http.getRequest('orders/'+ localStorage.getItem('userid')).subscribe((data) => {
         this.allPreferenceList = data.items;
       });
     }
 
   // Adding the items to the cart
-  public addItToTheCart(itemData: object): void {
+  public addItToTheCart(itemData: any): void {
+    itemData.quantity = 1;
     this.itemDataList.push(itemData);
     this.calculatePrice();
   }
@@ -65,10 +66,10 @@ export class OrderMainComponent implements OnInit {
   // Places the order
   public placeOrder(): void {
     const payload = {
-      items: this.itemDataList,
+      itemDetail: this.itemDataList,
       userId: localStorage.getItem('userid')
     };
-    this.http.postRequest('orders/placeOrder', payload).subscribe((data: any) => {
+    this.http.postRequest('Orders/placeOrder', payload).subscribe((data: any) => {
       this.confirmationMessage = 'Order placed successfully.';
       this.statusFlag = true;
       $('#successModal').modal('show');
@@ -83,7 +84,7 @@ export class OrderMainComponent implements OnInit {
   public ok() {
     $('#successModal').modal('hide');
     if (this.statusFlag) {
-      this.router.navigate(['/list']);
+      this.router.navigate(['/history']);
     }
   }
 
