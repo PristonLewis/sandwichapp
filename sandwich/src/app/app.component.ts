@@ -13,7 +13,7 @@ export class AppComponent {
   public signout(): void {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');
-    // this.
+    this.route.navigate(['/login']);
   }
 }
 

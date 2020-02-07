@@ -13,7 +13,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
     //gets all the order history
-    this.http.getRequest('/Orders/vieworder/' + localStorage.getItem('userid')).subscribe((data) => {
+    this.http.getRequest('/orders/viewOrder/' + localStorage.getItem('userid')).subscribe((data) => {
       console.log('data', data);
       this.myHistory = data.orderItems;
     });
