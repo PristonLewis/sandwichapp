@@ -37,7 +37,7 @@ export class OrderMainComponent implements OnInit {
 
     // Getting all the preferences
     public getAllPreferences(): void {
-      this.http.getRequest('orders/'+ localStorage.getItem('userid')).subscribe((data) => {
+      this.http.getRequest('orders/' + localStorage.getItem('userid')).subscribe((data) => {
         this.allPreferenceList = data.items;
       });
     }
