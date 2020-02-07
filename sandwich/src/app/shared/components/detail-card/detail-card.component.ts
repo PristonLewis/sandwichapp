@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
 @Component({
   selector: 'app-detail-card',
   templateUrl: './detail-card.component.html',
@@ -15,6 +14,7 @@ export class DetailCardComponent implements OnInit {
   }
 
   public remove(index): void {
+    console.log('index', index);
     this.removeCardEvent.emit(index);
   }
 
