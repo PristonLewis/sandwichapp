@@ -6,8 +6,8 @@ import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.serv
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'orders', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) }
+  { path: 'login', component: LoginComponent },
+  { path: 'orders', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) , canActivate: [AuthGuard]}
 ];
 
 @NgModule({
