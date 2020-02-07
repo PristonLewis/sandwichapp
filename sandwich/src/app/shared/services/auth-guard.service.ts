@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/auth.service';
+
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 })
 export class AuthGuardService {
 
-  constructor(public auth: AuthService, public router: Router) { }
+  constructor(public router: Router) { }
   canActivate(): boolean {
-    if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/order']);
+    if (localStorage.getItem('userid') === '') {
+      this.router.navigate(['/login']);
       return false;
     }
     return true;
