@@ -38,17 +38,21 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
     console.log(this.loginForm.value);
+    console.log(this.loginForm);
 
 
-    this.httpService.postRequest('users/userLogin', this.loginForm.value).subscribe(
+    this.httpService.postRequest('users/login', this.loginForm.value).subscribe(
       (data) => {
         console.log(data);
         localStorage.setItem('userid', data.userId);
-        localStorage.setItem('username', loginForm.value.uName);
-        // this.AuthService.changeAuth(loginForm.value.uName);
+        localStorage.setItem('username', this.loginForm.value.uName);
+        this.router.navigate(['/order']);
+        this.errFlag = false;
 
-
-      })
+      }, (exception) => {
+        this.errFlag = true;
+        console.log('exception', exception);
+      });
   }
 
 }
