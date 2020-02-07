@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   public errFlag;
   constructor(private httpService: HttpService, private formBuilder: FormBuilder,
-    private router: Router) {
-
+              private router: Router) {
   }
 
   ngOnInit() {

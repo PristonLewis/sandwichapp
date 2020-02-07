@@ -15,6 +15,7 @@ export class OrderMainComponent implements OnInit {
   public statusFlag: boolean;
   public allItemsList: Array<any>;
   public allPreferenceList: Array<any>;
+  public loaderFlag: boolean = false;
 
   constructor(private http: HttpService, private router: Router) {
     this.itemDataList = [];
@@ -37,9 +38,10 @@ export class OrderMainComponent implements OnInit {
 
     // Getting all the preferences
     public getAllPreferences(): void {
+      this.loaderFlag = true;
       this.http.getRequest('orders/pref/' + localStorage.getItem('userid')).subscribe((data) => {
         this.allPreferenceList = data;
-        console.log('qwer', this.allPreferenceList);
+        this.loaderFlag = false;
       });
     }
 
@@ -66,6 +68,7 @@ export class OrderMainComponent implements OnInit {
 
   // Places the order
   public placeOrder(): void {
+    this.loaderFlag = true;
     const payload = {
       itemDetail: this.itemDataList,
       userId: localStorage.getItem('userid')
@@ -74,8 +77,10 @@ export class OrderMainComponent implements OnInit {
       this.confirmationMessage = 'Order placed successfully.';
       this.statusFlag = true;
       $('#successModal').modal('show');
+      this.loaderFlag = false;
     }, (exception) => {
       this.statusFlag = false;
+      this.loaderFlag = false;
       this.confirmationMessage = 'Something went wrong.';
       $('#successModal').modal('show');
     });

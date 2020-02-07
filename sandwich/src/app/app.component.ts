@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'sandwich';
+  public signoutFlag: boolean = true;
   constructor(private route: Router) {}
   public signout(): void {
     localStorage.setItem('userid', '');
