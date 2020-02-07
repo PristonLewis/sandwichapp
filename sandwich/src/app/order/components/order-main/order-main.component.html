@@ -2,17 +2,41 @@
     <div class="row">
         <div class="col-sm-8">
             <h2>Preferences</h2>
-            <div *ngFor="let item of mockData">
-                <app-item-card [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
+
+            <div  class= "card-columns">
+                <app-item-card *ngFor="let item of allPreferenceList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
             </div>    
             <h3>Items</h3>
-            <div *ngFor="let item of mockData">
-                <app-item-card [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
+            <div class= "card-columns">
+                <app-item-card *ngFor="let item of allItemsList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
             </div>
         </div>
         <div class="col-sm-4">
-            <app-detail-card header="My Cart" [cartItems]="itemDataList"></app-detail-card>
+            <app-detail-card header="My Cart" (removeCardEvent)="removeFromCart($event)" [cartItems]="itemDataList"></app-detail-card>
+            <br/>
+            <h3>Total: {{total}}</h3>
+            <button class="btn btn-outline-primary" (click)="placeOrder()">Place the order</button>
         </div>        
     </div>
 
 </div>
+
+<div  class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{confirmationMessage}}.
+        </div>
+        <div class="modal-footer btnspace">
+
+          <button type="button" class="btn btn-primary " (click)="ok()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>  
