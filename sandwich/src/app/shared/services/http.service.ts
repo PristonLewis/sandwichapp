@@ -20,6 +20,7 @@ export class HttpService {
   }
 
   public getRequest(endpoint): Observable<any> {
+    console.log('endpoint', this.formTheUrl(endpoint));
     return this.httpClient.get(this.formTheUrl(endpoint));
   }
 

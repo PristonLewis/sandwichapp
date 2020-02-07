@@ -4,18 +4,13 @@
             <ul class="list-group">
                 <li class="list-group-item active">My preferences</li>
               </ul>
-              <ul class="list-group" *ngIf="!allPreferenceList.length">
-                <li class="list-group-item ">No preferences found</li>
-              </ul>
+              
               <br>
             <div  class= "card-columns">
                 <app-item-card *ngFor="let item of allPreferenceList" [item] = item (selectedItemEvent)="addItToTheCart($event)"></app-item-card>
             </div>    
             <ul class="list-group">
                 <li class="list-group-item active">Items</li>
-              </ul>
-              <ul class="list-group" *ngIf="!allItemsList.length">
-                <li class="list-group-item ">No preferences found</li>
               </ul>
               <br>
             <div class= "card-columns">

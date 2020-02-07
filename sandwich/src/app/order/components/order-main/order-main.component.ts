@@ -37,8 +37,9 @@ export class OrderMainComponent implements OnInit {
 
     // Getting all the preferences
     public getAllPreferences(): void {
-      this.http.getRequest('orders/' + localStorage.getItem('userid')).subscribe((data) => {
-        this.allPreferenceList = data.items;
+      this.http.getRequest('orders/pref/' + localStorage.getItem('userid')).subscribe((data) => {
+        this.allPreferenceList = data;
+        console.log('qwer', this.allPreferenceList);
       });
     }
 
@@ -69,7 +70,7 @@ export class OrderMainComponent implements OnInit {
       itemDetail: this.itemDataList,
       userId: localStorage.getItem('userid')
     };
-    this.http.postRequest('Orders/placeOrder', payload).subscribe((data: any) => {
+    this.http.postRequest('orders/placeOrder', payload).subscribe((data: any) => {
       this.confirmationMessage = 'Order placed successfully.';
       this.statusFlag = true;
       $('#successModal').modal('show');
