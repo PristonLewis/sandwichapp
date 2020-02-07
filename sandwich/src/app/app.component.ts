@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { setupTestingRouter } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sandwich';
+  public signoutFlag: boolean = true;
+  constructor(private route: Router) {}
+  public signout(): void {
+    localStorage.setItem('userid', '');
+    localStorage.setItem('username', '');
+    this.route.navigate(['/login']);
+  }
 }
+
